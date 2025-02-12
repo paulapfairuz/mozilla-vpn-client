@@ -131,12 +131,10 @@ jobs:
 
       - name: Update flatpak rust crates
         shell: bash
-        if: ${{ steps.inspect.outputs.flatpak-changes == 0 }}
         run: ./linux/flatpak/flatpak-update-crates.sh ./Cargo.lock
 
       - name: Commit the changes
         shell: bash
-        if: ${{ steps.inspect.outputs.flatpak-changes == 0 }}
         run: |
           if git diff --name-only | grep -q '^linux/flatpak/flatpak-vpn-crates.json'; then
             git add linux/flatpak/flatpak-vpn-crates.json
